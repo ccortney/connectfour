@@ -30,6 +30,7 @@
 
 #column-top td {
 	border: dashed 1px lightgray;
+	border-radius: 50%;
 }
 
 #column-top td:hover {
