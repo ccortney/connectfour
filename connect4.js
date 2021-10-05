@@ -5,11 +5,14 @@
  * board fills (tie)
  */
 
+// What to change back after testing
+// board back to const
+
 const WIDTH = 7; // x
 const HEIGHT = 6; // y
 
 let currPlayer = 'player1'; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 const playerTitle = document.querySelector('#player-title');
 playerTitle.innerText = `${currPlayer}`;
 
@@ -69,7 +72,7 @@ function makeHtmlBoard() {
     }
     // Append each row and its id to the htmlBoard element
     htmlBoard.append(row);
-  }
+  };
 }
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
@@ -113,6 +116,7 @@ function endGame(msg) {
 function handleClick(evt) {
   // get x from ID of clicked cell
   const x = +evt.target.id;
+  console.log(x);
 
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
@@ -132,19 +136,25 @@ function handleClick(evt) {
 
   // check for tie
   // check if all cells in board are filled; if so call, call endGame
+  if (checkForTie()) {
+    return endGame(`It is a tie!`);
+  }
+  
+  // change player
+  currPlayer === 'player1' ? currPlayer = 'player2' : currPlayer = 'player1';
+  playerTitle.innerText = `${currPlayer}`;
+}
+
+function checkForTie() {
   let filledRow = 0;
   for (let y=0; y<HEIGHT; y++) {
     if (!board[y].includes(null)) {
       filledRow++;
     };
     if (filledRow === HEIGHT) {
-    return endGame('It is a tie!');
+    return true;
     }
   }
-  
-  // change player
-  currPlayer === 'player1' ? currPlayer = 'player2' : currPlayer = 'player1';
-  playerTitle.innerText = `${currPlayer}`;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
