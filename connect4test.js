@@ -24,13 +24,10 @@ describe("Make Board", function() {
 // describe("Make HTML Board", function() {
 
 //     it ('should create a 7x6 table on makeHtmlBoard()', function() {
-//         const HEIGHT = 6;
-//         const WIDTH = 7;
-//         makeHtmlBoard();
-//         let currentTable = document.querySelectorAll('#board tbody tr td');
-        
+//         let currentTable = document.getElementsByTagName('table');
+
 //         expect(currentTable.length).toEqual(7);
-//         expect(currentTable[0].length).toEqual(6);
+//         expect(currentTable[0].length).toEqual(7);
 //     });
 
 // });
